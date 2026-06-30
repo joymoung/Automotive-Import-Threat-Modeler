@@ -1,0 +1,6 @@
+{
+  "name": "Automotive Import Threat Modeler",
+  "description": "An interactive, comprehensive security threat modeling suite for an automotive import company's digital platform, incorporating STRIDE and DREAD risk analyses with AI security guidance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
