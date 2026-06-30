@@ -11,6 +11,7 @@ import InteractiveDfd from "./components/InteractiveDfd";
 import ThreatDetailsModal from "./components/ThreatDetailsModal";
 import AiAssistant from "./components/AiAssistant";
 import ExportReport from "./components/ExportReport";
+import MscPortfolio from "./components/MscPortfolio";
 import {
   Shield,
   Activity,
@@ -27,7 +28,8 @@ import {
   Map,
   FileText,
   Calendar,
-  Lock
+  Lock,
+  GraduationCap
 } from "lucide-react";
 
 export default function App() {
@@ -35,7 +37,7 @@ export default function App() {
   const [threats, setThreats] = useState<Threat[]>(INITIAL_THREATS);
 
   // Layout & Filtering states
-  const [activeTab, setActiveTab] = useState<"overview" | "dfd" | "registry" | "ai" | "report">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "dfd" | "registry" | "ai" | "report" | "portfolio">("overview");
   const [selectedComponent, setSelectedComponent] = useState<string | null>(null);
   const [selectedStride, setSelectedStride] = useState<string>("All");
   const [selectedSeverity, setSelectedSeverity] = useState<string>("All");
@@ -231,7 +233,7 @@ export default function App() {
             <button
               id="nav-tab-report"
               onClick={() => setActiveTab("report")}
-              className={`w-full flex items-center gap-2.5 px-4 py-3.5 text-left transition-all ${
+              className={`w-full flex items-center gap-2.5 px-4 py-3.5 border-b border-slate-900 text-left transition-all ${
                 activeTab === "report"
                   ? "bg-slate-900 text-emerald-400 border-r-2 border-r-emerald-500 font-semibold"
                   : "text-slate-400 hover:bg-slate-900/50 hover:text-slate-200"
@@ -239,6 +241,18 @@ export default function App() {
             >
               <FileText size={16} />
               <span>COMPLIANCE REPORT</span>
+            </button>
+            <button
+              id="nav-tab-portfolio"
+              onClick={() => setActiveTab("portfolio")}
+              className={`w-full flex items-center gap-2.5 px-4 py-3.5 text-left transition-all ${
+                activeTab === "portfolio"
+                  ? "bg-slate-900 text-emerald-400 border-r-2 border-r-emerald-500 font-semibold"
+                  : "text-slate-400 hover:bg-slate-900/50 hover:text-slate-200"
+              }`}
+            >
+              <GraduationCap size={16} className="text-emerald-400 animate-pulse" />
+              <span>M.Sc. PORTFOLIO</span>
             </button>
           </nav>
 
@@ -658,6 +672,11 @@ export default function App() {
           {/* TAB 5: COMPLIANCE REPORT EXPORT */}
           {activeTab === "report" && (
             <ExportReport threats={threats} />
+          )}
+
+          {/* TAB 6: M.SC. APPLICATIONS PORTFOLIO */}
+          {activeTab === "portfolio" && (
+            <MscPortfolio />
           )}
 
         </main>
